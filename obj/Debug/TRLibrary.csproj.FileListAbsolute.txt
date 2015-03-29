@@ -1,0 +1,7 @@
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\bin\Debug\TRLibrary.dll
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\bin\Debug\TRLibrary.pdb
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.csprojResolveAssemblyReference.cache
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\Interop.Shell32.dll
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.csproj.ResolveComReference.cache
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.dll
+C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.pdb
