@@ -31,32 +31,16 @@ namespace TRLibrary
 				if (addToBeginning)
 				{
 					Environment.SetEnvironmentVariable("PATH", newPath + ";" + machinePath, EnvironmentVariableTarget.Machine);
-					//command = "SETX /m PATH \"" + newPath + ";%PATH% \"";
 					command = "SET PATH=" + newPath + ";%PATH%";
 				}
 				else
 				{
 					Environment.SetEnvironmentVariable("PATH", machinePath + ";" + newPath, EnvironmentVariableTarget.Machine);
-					//command = "SETX /m PATH \"" + "%PATH%;" + newPath + " \"";
 					command = "SET PATH=%PATH%;" + newPath;
 				}
 
 				RunCommand(command);
 			}
-
-			//string userPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
-			//if (!userPath.Contains(newPath + ";") && userPath != "")
-			//{
-			//	if (addToBeginning)
-			//	{
-			//		command = "SET PATH=" + newPath + ";%PATH%";
-			//	}
-			//	else
-			//	{
-			//		command = "SET PATH=%PATH%;" + newPath;
-			//	}
-			//	RunCommand(command);
-			//}
 		}
 
 		public static ShortcutType GetShortcutType(string shortcutPath)
@@ -85,6 +69,7 @@ namespace TRLibrary
 			var newFolder = "";
 			var newCommand = "";
 
+			// Get the location for the right click menus based on type
 			if (shortcutType == ShortcutType.File)
 			{
 				newFolder = @"*\shell\" + folder;
@@ -119,6 +104,7 @@ namespace TRLibrary
 					ex.ToString());
 			}
 
+			// Close the registry key objects
 			if (regFolder != null)
 			{
 				regFolder.Close();
