@@ -5,3 +5,16 @@ C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.cspro
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.dll
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.pdb
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.csprojResolveAssemblyReference.cache
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\bin\Release\TRLibrary.dll
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\bin\Release\TRLibrary.pdb
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.csprojResolveAssemblyReference.cache
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\obj\Release\Interop.Shell32.dll
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.csproj.ResolveComReference.cache
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.dll
+C:\Users\RalonA\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.pdb
+D:\Dropbox\Andrew\Projects\TRLibrary\bin\Release\TRLibrary.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\bin\Release\TRLibrary.pdb
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Release\Interop.Shell32.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.csproj.ResolveComReference.cache
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Release\TRLibrary.pdb

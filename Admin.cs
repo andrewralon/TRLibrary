@@ -1,11 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
@@ -13,7 +9,7 @@ namespace TRLibrary
 {
 	public class Admin
 	{
-		public enum ShortcutType { File, Folder, Unknown };
+		public enum ShortcutType { File, Folder, Url, Unknown };
 
 		#region Private Methods
 
@@ -45,6 +41,11 @@ namespace TRLibrary
 
 		public static ShortcutType GetShortcutType(string shortcutPath)
 		{
+			if (IsValidUrl(shortcutPath))
+			{
+				return ShortcutType.Url;
+			}
+
 			FileAttributes attr = File.GetAttributes(shortcutPath);
 
 			if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
@@ -59,6 +60,14 @@ namespace TRLibrary
 			{
 				return ShortcutType.Unknown;
 			}
+		}
+
+		public static bool IsValidUrl(string url)
+		{
+			Uri uriResult;
+			bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+				&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+			return result;
 		}
 
 		public static void NewRightClickMenu(string folder, string menu, string command, ShortcutType shortcutType)
