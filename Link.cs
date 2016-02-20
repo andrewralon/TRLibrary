@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TRLibrary
 {
@@ -15,7 +12,7 @@ namespace TRLibrary
 		[DllImport("shfolder.dll", CharSet = CharSet.Auto)]
 		internal static extern int SHGetFolderPath(IntPtr hwndOwner, int nFolder, IntPtr hToken, int dwFlags, StringBuilder lpszPath);
 
-		[Flags()]
+		[Flags]
 		enum SLGP_FLAGS
 		{
 			/// <summary>Retrieves the standard short (8.3 format) file name</summary>
@@ -82,7 +79,8 @@ namespace TRLibrary
 		interface IShellLinkW
 		{
 			/// <summary>Retrieves the path and file name of a Shell link object</summary>
-			void GetPath([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out WIN32_FIND_DATAW pfd, SLGP_FLAGS fFlags);
+			void GetPath([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out WIN32_FIND_DATAW pfd, 
+				SLGP_FLAGS fFlags);
 			/// <summary>Retrieves the list of item identifiers for a Shell link object</summary>
 			void GetIDList(out IntPtr ppidl);
 			/// <summary>Sets the pointer to an item identifier list (PIDL) for a Shell link object.</summary>
@@ -108,8 +106,7 @@ namespace TRLibrary
 			/// <summary>Sets the show command for a Shell link object. The show command sets the initial show state of the window.</summary>
 			void SetShowCmd(int iShowCmd);
 			/// <summary>Retrieves the location (path and index) of the icon for a Shell link object</summary>
-			void GetIconLocation([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath,
-				int cchIconPath, out int piIcon);
+			void GetIconLocation([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath, int cchIconPath, out int piIcon);
 			/// <summary>Sets the location (path and index) of the icon for a Shell link object</summary>
 			void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, int iIcon);
 			/// <summary>Sets the relative path to the Shell link object</summary>

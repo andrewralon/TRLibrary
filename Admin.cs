@@ -19,11 +19,17 @@ namespace TRLibrary
 
 		public static void AddToPath(string newPath, bool addToBeginning = false)
 		{
-			var command = "";
-			var machinePath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+			string machinePath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+			if (machinePath == null)
+			{
+				MessageBox.Show("Unable to retrieve the current system path. Oops.");
+				return;
+			}
 
 			if (!machinePath.Contains(newPath + ";"))
 			{
+				string command;
+
 				if (addToBeginning)
 				{
 					Environment.SetEnvironmentVariable("PATH", newPath + ";" + machinePath, EnvironmentVariableTarget.Machine);
@@ -56,7 +62,7 @@ namespace TRLibrary
 			{
 				return ShortcutType.File;
 			}
-			else
+			else // TODO - Test for URL shortcut?
 			{
 				return ShortcutType.Unknown;
 			}
@@ -75,8 +81,7 @@ namespace TRLibrary
 			RegistryKey regFolder = null;
 			RegistryKey regCommand = null;
 
-			var newFolder = "";
-			var newCommand = "";
+			string newFolder = "";
 
 			// Get the location for the right click menus based on type
 			if (shortcutType == ShortcutType.File)
@@ -88,49 +93,32 @@ namespace TRLibrary
 				newFolder = @"Folder\shell\" + folder;
 			}
 
-			newCommand = newFolder + @"\command";
+			string newCommand = newFolder + @"\command";
 
 			try
 			{
 				regFolder = Registry.ClassesRoot.CreateSubKey(newFolder);
-				if (regFolder != null)
-				{
-					regFolder.SetValue("", menu);
-				}
+				regFolder?.SetValue("", menu);
 
 				regCommand = Registry.ClassesRoot.CreateSubKey(newCommand);
-				if (regCommand != null)
-				{
-					regCommand.SetValue("", command);
-				}
+				regCommand?.SetValue("", command);
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Unable to write right click context menu." +
 					Environment.NewLine + Environment.NewLine +
 					"Oh well, you'll just have to use the GUI. Moving on...." +
-					Environment.NewLine + Environment.NewLine + 
-					ex.ToString());
+					Environment.NewLine + Environment.NewLine + ex);
 			}
 
 			// Close the registry key objects
-			if (regFolder != null)
-			{
-				regFolder.Close();
-			}
-			if (regCommand != null)
-			{
-				regCommand.Close();
-			}
+			regFolder?.Close();
+			regCommand?.Close();
 		}
 
 		public static void RemoveRightClickMenu(string folder, string menu, ShortcutType shortcutType)
 		{
-			RegistryKey regFolder = null;
-			RegistryKey regCommand = null;
-
-			var oldFolder = "";
-			var oldCommand = "";
+			string oldFolder = "";
 
 			if (shortcutType == ShortcutType.File)
 			{
@@ -141,18 +129,18 @@ namespace TRLibrary
 				oldFolder = @"Folder\shell\" + folder;
 			}
 
-			oldCommand = oldFolder + @"\command";
+			string oldCommand = oldFolder + @"\command";
 
 			try
 			{
-				regCommand = Registry.ClassesRoot.OpenSubKey(oldCommand);
+				RegistryKey regCommand = Registry.ClassesRoot.OpenSubKey(oldCommand);
 				if (regCommand != null)
 				{
 					regCommand.Close();
 					Registry.ClassesRoot.DeleteSubKey(oldCommand);
 				}
 
-				regFolder = Registry.ClassesRoot.OpenSubKey(oldFolder);
+				RegistryKey regFolder = Registry.ClassesRoot.OpenSubKey(oldFolder);
 				if (regFolder != null)
 				{
 					regFolder.Close();
@@ -162,8 +150,7 @@ namespace TRLibrary
 			catch (Exception ex)
 			{
 				MessageBox.Show("Unable to remove previous right click context menu. No big deal. Moving on...." +
-					Environment.NewLine + Environment.NewLine + 
-					ex.ToString());
+					Environment.NewLine + Environment.NewLine + ex);
 			}
 		}
 
@@ -172,6 +159,7 @@ namespace TRLibrary
 			Process process = new Process();
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 
+			//startInfo.CreateNoWindow = true; // Is this helpful?
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			startInfo.FileName = "cmd.exe";
 			startInfo.Arguments = "/C " + command;

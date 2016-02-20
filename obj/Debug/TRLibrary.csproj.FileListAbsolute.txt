@@ -5,3 +5,10 @@ C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\Interop.Shell32.d
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.csproj.ResolveComReference.cache
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.dll
 C:\Users\TeamRalon\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.pdb
+D:\Dropbox\Andrew\Projects\TRLibrary\bin\Debug\TRLibrary.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\bin\Debug\TRLibrary.pdb
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.csprojResolveAssemblyReference.cache
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\Interop.Shell32.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.csproj.ResolveComReference.cache
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.dll
+D:\Dropbox\Andrew\Projects\TRLibrary\obj\Debug\TRLibrary.pdb

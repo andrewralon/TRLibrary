@@ -1,34 +1,41 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Windows.Forms;
 
 namespace TRLibrary
 {
-    public class Dragging
-    {
-        public static void DragAndEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-        }
+	public class Dragging
+	{
+		public static void DragAndEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop)) // Normal files or folders
+			{
+				e.Effect = DragDropEffects.Copy;
+				return;
+			}
 
-        public static string[] GetDroppedFiles(object sender, DragEventArgs e)
-        {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-			
-			//foreach (string file in files)
-			//{
-			//	Console.WriteLine(file);
-			//}
+			if (e.Data.GetDataPresent(DataFormats.Text)) // URL drag and drop from browser "lock" icon
+			{
+				e.Effect = DragDropEffects.Copy;
+				return;
+			}
+		}
 
-			// RESOLVE LINKS HERE!
+		public static string[] GetDroppedFiles(object sender, DragEventArgs e)
+		{
+			string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 
-            if (files[0] != null && 
-                (File.Exists(files[0]) || Directory.Exists(files[0])))
+			if (files == null) // Check for URL drag and drop from browser "lock" icon
+			{
+				files = new string[]
+				{
+					(string)e.Data.GetData(DataFormats.Text, false)
+				};
+			}
+
+			if (files[0] != null &&
+				(File.Exists(files[0]) ||
+				Directory.Exists(files[0]) || 
+				Admin.IsValidUrl(files[0])))
             {
                 return files;
             }
@@ -38,34 +45,7 @@ namespace TRLibrary
             }
         }
 
-		public static bool IsLink(string filename)
-		{
-
-
-			return false;
-		}
-
         #region Handlers
-
-        //private void HandleDragAndEnter(object sender, DragEventArgs e)
-        //{
-        //    DragAndEnter(sender, e);
-        //}
-
-        //private void HandleDragAndDrop(object sender, DragEventArgs e)
-        //{
-        //    //DoStuff(sender, e);
-        //}
-
-        //private void MainForm_DragEnter(object sender, DragEventArgs e)
-        //{
-        //    HandleDragAndEnter(sender, e);
-        //}
-
-        //private void MainForm_DragDrop(object sender, DragEventArgs e)
-        //{
-        //    HandleDragAndDrop(sender, e);
-        //}
 
         #endregion Handlers
     }
